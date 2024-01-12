@@ -10,7 +10,10 @@ function PostForm() {
     const description = formData.get("description");
     const genre = formData.get("genre");
     const thumbnail = formData.get("thumbnail");
-    const media = formData.get("media");
+    const media = formData
+      .get("media")
+      .split(", ")
+      .map((item) => item.trim());
     const ends_at = formData.get("ends_at");
 
     // Retrieve the user ID from local storage

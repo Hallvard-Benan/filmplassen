@@ -17,9 +17,9 @@ function Posts() {
     }
   }, []);
 
-  const handleDeletePost = async (postId) => {
+  const handleDeletePost = async (postId, userId) => {
     try {
-      if (user === postId) {
+      if (user === userId) {
         console.log("authenticated");
         const { error } = await supabase.from("post").delete().eq("id", postId);
         if (error) {
@@ -43,7 +43,10 @@ function Posts() {
     const description = formData.get("description");
     const genre = formData.get("genre");
     const thumbnail = formData.get("thumbnail");
-    const media = formData.get("media");
+    const media = formData
+      .get("media")
+      .split(",")
+      .map((item) => item.trim());
     const ends_at = formData.get("ends_at");
 
     try {
@@ -116,7 +119,7 @@ function Posts() {
           {user === post.user && (
             <div className="flex justify-between">
               <button
-                onClick={() => handleDeletePost(post.id)}
+                onClick={() => handleDeletePost(post.id, post.user)}
                 className="border-2 p-2 border-red-500 text-red-500"
               >
                 Delete
@@ -198,7 +201,7 @@ function Posts() {
                   type="text"
                   id="media"
                   name="media"
-                  defaultValue={`{${post.media}}`}
+                  defaultValue={post.media}
                   placeholder="media"
                   className="border-2"
                 />
