@@ -4,6 +4,7 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useEffect, useState } from "react";
 import Posts from "./components/posts";
 import supabase from "./supabaseClient";
+import HeroCategories from "./components/herocategories/HeroCategories"
 
 const handleLogout = () => {
   window.localStorage.clear();
@@ -29,11 +30,14 @@ export default function App() {
 
   if (!session) {
     return (
-      <Auth
-        supabaseClient={supabase}
-        appearance={{ theme: ThemeSupa }}
-        providers={["google"]}
-      />
+      <div>
+        <Auth
+          supabaseClient={supabase}
+          appearance={{ theme: ThemeSupa }}
+          providers={['google']}
+        />
+        <HeroCategories />
+      </div>
     );
   } else {
     return (
