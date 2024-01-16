@@ -37,7 +37,6 @@ export default function App() {
           theme="dark"
           providers={""}
         />
-        <div className="relative"></div>
       </div>
     );
   } else {
