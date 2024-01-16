@@ -1,19 +1,19 @@
 import "./App.css";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeMinimal, ThemeSupa, minimal } from "@supabase/auth-ui-shared";
 import { useEffect, useState } from "react";
-import Posts from "./components/posts";
 import supabase from "./supabaseClient";
-import PostForm from "./components/Create";
-
-const handleLogout = () => {
-  window.localStorage.clear();
-  window.location.reload();
-};
+import { Outlet } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 
 export default function App() {
   const [session, setSession] = useState(null);
+  const navigate = useNavigate();
 
+  const handleLogout = async () => {
+    window.localStorage.clear();
+    await navigate({ to: "/", replace: true });
+    window.location.reload();
+  };
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -27,31 +27,20 @@ export default function App() {
 
     return () => subscription.unsubscribe();
   }, []);
-
-  if (!session) {
-    return (
-      <div className="text-white bg-black w-[calc(min(100vw-20px,1050px))] mx-auto">
-        <Auth
-          supabaseClient={supabase}
-          appearance={{ theme: ThemeSupa }}
-          theme="dark"
-          providers={""}
-        />
-      </div>
-    );
-  } else {
-    return (
-      <div className="grid text-white bg-black w-[calc(min(100vw-20px,1050px))] mx-auto">
-        Logged in!{" "}
-        <button
-          className="border-2 border-neutral-600  hover:bg-slate-400 px-4 py-2 "
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
-        <Posts></Posts>
-        <PostForm></PostForm>
-      </div>
-    );
-  }
+  return (
+    <>
+      <nav className="flex text-xl font-semibold p-4 justify-between">
+        <Link to={"/"}>Home</Link>
+        <div className="flex gap-4">
+          <Link to={"/create"}>Create</Link>
+          {session ? (
+            <button onClick={handleLogout}>Logout</button>
+          ) : (
+            <Link to={"/login"}>Login</Link>
+          )}
+        </div>
+      </nav>
+      <Outlet />
+    </>
+  );
 }
