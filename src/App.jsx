@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Posts from "./components/posts";
 import supabase from "./supabaseClient";
 import PostForm from "./components/Create";
-import ImageSlider from "./components/herosection/ImageSlider";
 
 const handleLogout = () => {
   window.localStorage.clear();
@@ -38,7 +37,6 @@ export default function App() {
           providers={["google"]}
         />
         <div className="relative">
-          <ImageSlider />
         </div>
       </div>
     );
