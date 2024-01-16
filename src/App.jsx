@@ -34,8 +34,10 @@ export default function App() {
         <Auth
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
-          providers={['google']}
+          providers={["google"]}
         />
+        <div className="relative">
+        </div>
       </div>
     );
   } else {
