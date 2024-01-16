@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import supabase from "../../supabaseClient";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
-
+import { Link } from "@tanstack/react-router";
 function Posts() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
@@ -149,9 +149,9 @@ function Posts() {
                 index % 2 === 0 && "flex-row-reverse"
               } items-end`}
             >
-              <a href="#" className="underline text-lg">
+              <Link to={`/listing?id=${post.id}`} className="underline text-lg">
                 {"Se Prosjektet ->"}
-              </a>
+              </Link>
               {user === post.user && (
                 <div className="flex">
                   <button
