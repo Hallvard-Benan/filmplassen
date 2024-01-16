@@ -33,9 +33,12 @@ export default function App() {
       <div className="text-white bg-black w-[calc(min(100vw-20px,1050px))] mx-auto">
         <Auth
           supabaseClient={supabase}
-          appearance={{ theme: ThemeMinimal }}
+
+          appearance={{ theme: ThemeSupa }}
           providers={["google"]}
         />
+        <div className="relative">
+        </div>
       </div>
     );
   } else {
