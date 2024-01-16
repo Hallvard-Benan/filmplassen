@@ -1,6 +1,6 @@
 import "./App.css";
 import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
+import { ThemeMinimal, ThemeSupa, minimal } from "@supabase/auth-ui-shared";
 import { useEffect, useState } from "react";
 import Posts from "./components/posts";
 import supabase from "./supabaseClient";
@@ -30,9 +30,10 @@ export default function App() {
 
   if (!session) {
     return (
-      <div>
+      <div className="text-white bg-black w-[calc(min(100vw-20px,1050px))] mx-auto">
         <Auth
           supabaseClient={supabase}
+
           appearance={{ theme: ThemeSupa }}
           providers={["google"]}
         />
@@ -42,7 +43,7 @@ export default function App() {
     );
   } else {
     return (
-      <div className="grid">
+      <div className="grid text-white bg-black w-[calc(min(100vw-20px,1050px))] mx-auto">
         Logged in!{" "}
         <button
           className="border-2 border-neutral-600  hover:bg-slate-400 px-4 py-2 "
