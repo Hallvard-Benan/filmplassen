@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Posts from "./components/posts";
 import supabase from "./supabaseClient";
 import PostForm from "./components/Create";
+import CreateListing from "./components/creatlisting/CreateListing";
 
 const handleLogout = () => {
   window.localStorage.clear();
@@ -37,6 +38,7 @@ export default function App() {
           theme="dark"
           providers={""}
         />
+        <CreateListing />
       </div>
     );
   } else {
