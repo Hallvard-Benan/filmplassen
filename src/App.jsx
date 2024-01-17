@@ -2,7 +2,7 @@ import "./App.css";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeMinimal, ThemeSupa, minimal } from "@supabase/auth-ui-shared";
 import { useEffect, useState } from "react";
-import Posts from "./components/posts";
+import Posts from "./components/Posts";
 import supabase from "./supabaseClient";
 import PostForm from "./components/Create";
 
