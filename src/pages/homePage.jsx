@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ImageSlider from "../components/herosection/ImageSlider";
 
-import Posts from "../components/posts";
+import Posts from "../components/Posts";
 import supabase from "../supabaseClient";
 function HomePage() {
   const [session, setSession] = useState(null);
