@@ -149,8 +149,14 @@ function Posts() {
                 index % 2 === 0 && "flex-row-reverse"
               } items-end`}
             >
-              <Link to={`/listing?id=${post.id}`} className="underline text-lg">
-                {"Se Prosjektet ->"}
+              <Link
+                to={`/listing?id=${post.id}`}
+                className="border-b text-lg px-1"
+              >
+                <div className="transition-transform duration-300 transform hover:translate-x-3 inline-block">
+                  {"Se Prosjektet "}
+                  <span className="">{"->"}</span>
+                </div>
               </Link>
               {user === post.user && (
                 <div className="flex">
