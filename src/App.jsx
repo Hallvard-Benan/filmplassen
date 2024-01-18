@@ -41,7 +41,9 @@ export default function App() {
           )}
         </div>
       </nav>
-      <Outlet />
+      <main className=" w-[calc(min(100vw-20px,1050px))] mx-auto">
+        <Outlet />
+      </main>
     </>
   );
 }
