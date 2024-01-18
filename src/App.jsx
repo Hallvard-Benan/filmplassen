@@ -4,6 +4,7 @@ import supabase from "./supabaseClient";
 import { Outlet } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { useNavigate } from "@tanstack/react-router";
+import SettingsButton from "./components/buttons/Settings";
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -30,7 +31,7 @@ export default function App() {
   return (
     <>
       <nav className="flex text-xl font-semibold p-4 justify-between">
-        <Link to={"/"}>Home</Link>
+        <SettingsButton />
         <div className="flex gap-4">
           <Link to={"/create"}>Create</Link>
           {session ? (
