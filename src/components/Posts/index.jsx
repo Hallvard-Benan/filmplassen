@@ -8,6 +8,7 @@ function Posts() {
   const [error, setError] = useState(null);
   const [user, setUser] = useState("");
   const modalRefs = useRef({});
+  const deleteModalRefs = useRef({});
 
   useEffect(() => {
     const storedData = window.localStorage.getItem(
@@ -20,6 +21,7 @@ function Posts() {
   }, []);
 
   const handleDeletePost = async (postId, userId) => {
+    closeDeleteModal(deleteModalRefs.current[postId]); // Optimized way to remove the deleted post from state
     try {
       if (user === userId) {
         console.log("authenticated");
@@ -27,7 +29,7 @@ function Posts() {
         if (error) {
           console.log(error);
         } else {
-          setPosts(posts.filter((post) => post.id !== postId)); // Optimized way to remove the deleted post from state
+          setPosts(posts.filter((post) => post.id !== postId));
         }
       } else {
         throw new Error("unauthorized");
@@ -45,10 +47,9 @@ function Posts() {
     const description = formData.get("description");
     const genre = formData.get("genre");
     const thumbnail = formData.get("thumbnail");
-    const media = formData
-      .get("media")
-      .split(",")
-      .map((item) => item.trim());
+    const media = Array.from({ length: 6 }, (_, i) =>
+      formData.get(`media${i + 1}`)
+    ).filter(Boolean);
     const ends_at = formData.get("ends_at");
 
     try {
@@ -87,6 +88,18 @@ function Posts() {
     // Format the date to yyyy-MM-dd
     return date.toISOString().split("T")[0];
   }
+
+  const openDeleteConfirmation = (postId) => {
+    if (deleteModalRefs.current[postId]) {
+      deleteModalRefs.current[postId].showModal();
+    }
+  };
+
+  const closeDeleteModal = (postId) => {
+    if (deleteModalRefs.current[postId]) {
+      deleteModalRefs.current[postId].close();
+    }
+  };
 
   const openModal = (postId) => {
     if (modalRefs.current[postId]) {
@@ -161,11 +174,12 @@ function Posts() {
               {user === post.user && (
                 <div className="flex">
                   <button
-                    onClick={() => handleDeletePost(post.id, post.user)}
                     className=" p-2 text-red-500 text-2xl"
+                    onClick={() => openDeleteConfirmation(post.id)}
                   >
                     <MdDelete />
                   </button>
+
                   <button
                     onClick={() => openModal(post.id)}
                     className="p-2 text-blue-500 text-2xl"
@@ -176,15 +190,40 @@ function Posts() {
               )}
             </div>
             <dialog
+              className=" bg- bg-gray-950 p-8 text-white"
+              ref={(el) => (deleteModalRefs.current[post.id] = el)}
+            >
+              <div className="grid gap-4 ">
+                <h2 className="font-medium text-xl">
+                  Permanently delete this post?
+                </h2>
+                <button
+                  className="bg-blue-500 px-4 py-2"
+                  onClick={() => {
+                    closeDeleteModal(post.id);
+                    handleDeletePost(post.id, post.user);
+                  }}
+                >
+                  Confirm
+                </button>
+                <button
+                  className="border-2 border-red-500"
+                  onClick={() => closeDeleteModal(post.id)}
+                >
+                  cancel
+                </button>
+              </div>
+            </dialog>
+            <dialog
               ref={(el) => (modalRefs.current[post.id] = el)}
-              className="bg-white p-4"
+              className="bg-gray-950 text-white p-4"
             >
               <form
                 onSubmit={(e) => handleUpdate(e, post.id)}
-                className="grid grid-cols-2 gap-4"
+                className="flex flex-col md:grid md:grid-cols-2 text-left gap-8 min-w-[300px]"
               >
-                <div>
-                  <label htmlFor="title" className="block">
+                <div className="flex flex-col">
+                  <label htmlFor="title" className="">
                     Title
                   </label>
                   <input
@@ -193,37 +232,41 @@ function Posts() {
                     id="title"
                     name="title"
                     placeholder="title"
-                    className="border-2"
+                    className="border-b-2 text-gray-400 bg-transparent border-gray-600 "
                   />
                 </div>
-                <div>
-                  <label htmlFor="description" className="block">
+                <div className="flex flex-col">
+                  <label htmlFor="description" className="">
                     Description
                   </label>
-                  <input
+                  <textarea
                     type="text"
                     id="description"
                     defaultValue={post.description}
                     name="description"
                     placeholder="Description"
-                    className="border-2"
+                    className="border-b-2 text-gray-400 bg-transparent border-gray-600 "
                   />
                 </div>
-                <div>
-                  <label htmlFor="genre" className="block">
-                    Genre
+                <div className="flex flex-col">
+                  <label htmlFor="genre" className="">
+                    Category
                   </label>
-                  <input
+                  <select
                     type="text"
                     id="genre"
-                    defaultValue={post.genre}
                     name="genre"
-                    placeholder="Genre"
-                    className="border-2"
-                  />
+                    value={post.genre}
+                    className="ps-1 py-1 pe-12  placeholder-gray-600 bg-transparent border-b-2 border-gray-600 focus:outline-none transition-all duration-300 ease-in-out hover:border-white cursor-pointer"
+                  >
+                    <option value="kortfilm">Kortfilm</option>
+                    <option value="musikkvideo">Musikkvideo</option>
+                    <option value="dokumentar">Dokumentar</option>
+                    <option value="spillefilm">Spillefilm</option>
+                  </select>
                 </div>
-                <div>
-                  <label htmlFor="thumbnail" className="block">
+                <div className="flex flex-col">
+                  <label htmlFor="thumbnail" className="">
                     Thumbnail URL
                   </label>
                   <input
@@ -232,24 +275,28 @@ function Posts() {
                     defaultValue={post.thumbnail}
                     name="thumbnail"
                     placeholder="thumbnail"
-                    className="border-2"
+                    className="border-b-2 text-gray-400 bg-transparent border-gray-600 "
                   />
                 </div>
-                <div>
-                  <label htmlFor="media" className="block">
-                    Media URL
-                  </label>
-                  <input
-                    type="text"
-                    id="media"
-                    name="media"
-                    defaultValue={post.media}
-                    placeholder="media"
-                    className="border-2"
-                  />
+                <div className="flex flex-col gap-2">
+                  <h3>Images</h3>
+                  {"asdfgh".split("").map((char, index) => (
+                    <div key={index}>
+                      <label htmlFor={`media${index + 1}`}> {index + 1}</label>
+                      <input
+                        name={`media${index + 1}`}
+                        className="border-b-2 text-gray-400 bg-transparent border-gray-600 "
+                        defaultValue={
+                          post.media[index] !== undefined
+                            ? post.media[index]
+                            : ""
+                        }
+                      />
+                    </div>
+                  ))}
                 </div>
-                <div>
-                  <label htmlFor="ends" className="block">
+                <div className="flex flex-col">
+                  <label htmlFor="ends" className="">
                     End Date
                   </label>
                   <input
@@ -258,18 +305,18 @@ function Posts() {
                     name="ends_at"
                     defaultValue={formatDate(post.ends_at)}
                     placeholder="ends_at"
-                    className="border-2"
+                    className="border-b-2 invert"
                   />
                 </div>
-                <button type="submit" className="bg-green-500 col-span-2">
-                  Submit
-                </button>
                 <button
                   type="button"
                   onClick={() => closeEditModal(post.id)}
-                  className="close-modal"
+                  className="bg-red-500"
                 >
-                  Close
+                  Close x
+                </button>
+                <button type="submit" className="bg-green-500">
+                  Submit
                 </button>
               </form>
             </dialog>
