@@ -32,7 +32,7 @@ export default function App() {
     <>
       <nav className="flex text-xl font-semibold p-4 justify-between">
         <SettingsButton />
-        <div className="flex gap-4">
+        <div className="flex gap-4 items-center">
           {session ? (
             <>
               <Link to={"/create"}>Create</Link>

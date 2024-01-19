@@ -93,28 +93,28 @@ export default function CreateListingPage() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center items-center max-w-5xl mx-auto"
+      className="flex flex-col justify-center items-center lg:max-w-5xl"
     >
-      <div className="items-start">
-        <div className="flex">
+      <div className="lg:items-start text-center lg:text-left">
+        <div className="flex justify-center lg:justify-normal">
           <h1 className="text-4xl mb-4 border-b-2 pb-6 ps-1 pe-6">
             Create Listing
           </h1>
         </div>
-        <p className="text-xs w-2/3 mt-2 mb-6">
+        <p className="text-xs lg:w-2/3 mt-2 mb-6">
           Trenger du en artist, band eller DJ til ditt bryllup, firmafest,
           privatfest eller annet arrangement? Få uforpliktende svar fra artister
           som passer til oppdraget! Bare fyll ut skjemaet under, så gir vi de
           beskjed og dere kan forhandle videre! Fyll ut mest mulig detaljert,
           slik at artistene kan vurdere best mulig om dette er noe for dem.
         </p>
-        <div className="flex">
+        <div className="flex justify-center lg:justify-normal">
           <h2 className="text-2xl my-4 border-b-2 pb-4 ps-1 pe-6">
             Informasjon
           </h2>
         </div>
 
-        <div className="flex mt-4 justify-between">
+        <div className="lg:flex mt-4 justify-between">
           <div>
             <input
               type="text"
@@ -147,7 +147,7 @@ export default function CreateListingPage() {
           </div>
         </div>
 
-        <div className="flex justify-between mt-4">
+        <div className="lg:flex justify-between mt-4">
           <div className="mt-5 cursor-pointer">
             <input
               type="text"
@@ -155,7 +155,7 @@ export default function CreateListingPage() {
               required
               name="projectTitle"
               placeholder="Tittel på Prosjektet"
-              className="ps-1 py-1 pe-28 text-2xl text-white placeholder-gray-600 bg-transparent border-b-2 border-gray-600 focus:outline-none transition-all duration-300 ease-in-out hover:border-white cursor-pointer"
+              className="ps-1 py-1 lg:pe-28 text-2xl text-white placeholder-gray-600 bg-transparent border-b-2 border-gray-600 focus:outline-none transition-all duration-300 ease-in-out hover:border-white cursor-pointer"
             />
           </div>
 
@@ -175,15 +175,15 @@ export default function CreateListingPage() {
             </select>
           </div>
 
-          <div className="mt-6 mr-12">
+          <div className="mt-6 lg:mr-12">
             <p className="py-1 px-12 text-gray-600 border-b-2 border-gray-600">
               Tags
             </p>
           </div>
         </div>
 
-        <div className="flex justify-between mt-8">
-          <div className="w-2/4 flex flex-col">
+        <div className="flex flex-col gap-6 lg:gap-0 items-center lg:items-start lg:flex-row justify-between mt-8">
+          <div className="lg:w-2/4 flex flex-col">
             <label
               htmlFor="description"
               className="ps-1 py-1 mb-2 text-gray-600"
@@ -243,12 +243,12 @@ export default function CreateListingPage() {
       <h2 className="text-2xl mt-16 mb-4 items-center border-b-2 pb-2 px-6">
         Moodboard
       </h2>
-      <div className="flex gap-8 justify-between mt-8">
+      <div className="lg:flex gap-8 justify-between mt-8">
         <MoodSquare name={"media1"} />
         <MoodSquare name={"media2"} />
         <MoodSquare name={"media3"} />
       </div>
-      <div className="flex gap-8 justify-between mt-8">
+      <div className="lg:flex gap-8 justify-between mt-8">
         <MoodSquare name={"media4"} />
         <MoodSquare name={"media5"} />
         <MoodSquare name={"media6"} />
@@ -276,7 +276,7 @@ export default function CreateListingPage() {
         >
           Create Listing
         </button>
-        <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center ml-4">
+        <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center lg:ml-4">
           <FaArrowRight size={16} color="#333" />
         </div>
       </div>
