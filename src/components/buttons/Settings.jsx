@@ -71,6 +71,16 @@ export default function SettingsButton() {
     opacity: isClicked ? 1 : 0,
     pointerEvents: isClicked ? "auto" : "none",
   };
+  const menuStyle5 = {
+    position: "absolute",
+    left: isClicked ? "4rem" : "0",
+    top: "13.1rem",
+    transition: `left 1.2s ease-out, opacity 0.5s ${
+      isClicked ? "0.9s" : "0.3s"
+    } ease`, // Adjust the delay for visibility
+    opacity: isClicked ? 1 : 0,
+    pointerEvents: isClicked ? "auto" : "none",
+  };
 
   return (
     <div className="flex items-center z-10">
@@ -98,22 +108,41 @@ export default function SettingsButton() {
         </button>
         <div>
           <div style={menuStyle}>
-          <Link
-            to={"/"}
-            className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider"
+            <a
+              href="/"
+              className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider"
+            >
+              Hjem
+            </a>
+          </div>
+          <a
+            href={"/?filter=kortfilm"}
+            style={menuStyle2}
+            className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider mt-2"
           >
-            Hjem
-          </Link>
-          </div>
-          <div style={menuStyle2} className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider mt-2">
             Kortfilmer
-          </div>
-          <div style={menuStyle3}  className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider mt-2">
+          </a>
+          <a
+            href={"/?filter=spillefilm"}
+            style={menuStyle3}
+            className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider mt-2"
+          >
             Filmer
-          </div>
-          <div style={menuStyle4}  className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider mt-2">
+          </a>
+          <a
+            href={"/?filter=musikkvideo"}
+            style={menuStyle4}
+            className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider mt-2"
+          >
             Musikkvideo
-          </div>
+          </a>
+          <a
+            style={menuStyle5}
+            href={"/?filter=dokumentar"}
+            className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider mt-2"
+          >
+            Dokumentarer
+          </a>
         </div>
       </div>
     </div>
