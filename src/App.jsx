@@ -33,9 +33,11 @@ export default function App() {
       <nav className="flex text-xl font-semibold p-4 justify-between">
         <SettingsButton />
         <div className="flex gap-4">
-          <Link to={"/create"}>Create</Link>
           {session ? (
-            <button onClick={handleLogout}>Logout</button>
+            <>
+              <Link to={"/create"}>Create</Link>
+              <button onClick={handleLogout}>Logout</button>
+            </>
           ) : (
             <Link to={"/login"}>Login</Link>
           )}

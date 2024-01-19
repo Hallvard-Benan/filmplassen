@@ -32,9 +32,12 @@ export default function CreateListingPage() {
       "sb-mznnszovluoyourfpvtb-auth-token"
     );
     let userId;
+    let userEmail;
     if (storedData) {
       const parsedData = JSON.parse(storedData);
-      userId = parsedData.user.id; // Access the user ID from the parsed object
+      userId = parsedData.user.id;
+      userEmail = parsedData.user.email;
+      // Access the user ID from the parsed object
     }
 
     // Check if userId is obtained
@@ -52,7 +55,7 @@ export default function CreateListingPage() {
       "media: " + media,
       "ends_at" + ends_at,
       "category :" + category,
-      "email: " + email,
+      "email: " + email ? email : userEmail,
       "location:" + location,
       "thumbnail: " + thumbnail
     );
@@ -117,6 +120,7 @@ export default function CreateListingPage() {
               type="text"
               id="name"
               name="name"
+              required
               placeholder="Ditt Navn"
               className="ps-1 py-1 pe-12 bg-transparent border-b-2 border-gray-600 text-white placeholder-gray-600 focus:outline-none cursor-pointer transition-all duration-300 ease-in-out hover:border-white"
             />
@@ -148,6 +152,7 @@ export default function CreateListingPage() {
             <input
               type="text"
               id="projectTitle"
+              required
               name="projectTitle"
               placeholder="Tittel på Prosjektet"
               className="ps-1 py-1 pe-28 text-2xl text-white placeholder-gray-600 bg-transparent border-b-2 border-gray-600 focus:outline-none transition-all duration-300 ease-in-out hover:border-white cursor-pointer"
@@ -188,6 +193,7 @@ export default function CreateListingPage() {
             <textarea
               id="description"
               name="description"
+              required
               rows="4"
               className="w-full bg-transparent border-2 border-gray-600 p-2 focus:outline-none transition-all duration-300 ease-in-out hover:border-white cursor-pointer"
             ></textarea>
@@ -256,6 +262,7 @@ export default function CreateListingPage() {
         </label>
         <input
           type="date"
+          required
           id="ends_at"
           name="ends_at"
           placeholder="ends_at"
