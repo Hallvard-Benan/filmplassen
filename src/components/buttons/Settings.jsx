@@ -37,7 +37,7 @@ export default function SettingsButton() {
     top: "0.7rem",
     transition: `left 0.3s ease-out, opacity 0.5s ${
       isClicked ? "0.1s" : "-0.2s"
-    } ease`, // Adjust the delay for visibility
+    } ease`,
     opacity: isClicked ? 1 : 0,
     pointerEvents: isClicked ? "auto" : "none",
   };
@@ -47,7 +47,7 @@ export default function SettingsButton() {
     top: "3rem",
     transition: `left 0.6s ease-out, opacity 0.5s ${
       isClicked ? "0.3s" : "0.1s"
-    } ease`, // Adjust the delay for visibility
+    } ease`,
     opacity: isClicked ? 1 : 0,
     pointerEvents: isClicked ? "auto" : "none",
   };
@@ -57,7 +57,7 @@ export default function SettingsButton() {
     top: "6.3rem",
     transition: `left 0.9s ease-out, opacity 0.5s ${
       isClicked ? "0.6s" : "0.2s"
-    } ease`, // Adjust the delay for visibility
+    } ease`,
     opacity: isClicked ? 1 : 0,
     pointerEvents: isClicked ? "auto" : "none",
   };
@@ -67,7 +67,7 @@ export default function SettingsButton() {
     top: "9.7rem",
     transition: `left 1.2s ease-out, opacity 0.5s ${
       isClicked ? "0.9s" : "0.3s"
-    } ease`, // Adjust the delay for visibility
+    } ease`,
     opacity: isClicked ? 1 : 0,
     pointerEvents: isClicked ? "auto" : "none",
   };
@@ -75,9 +75,9 @@ export default function SettingsButton() {
     position: "absolute",
     left: isClicked ? "4rem" : "0",
     top: "13.1rem",
-    transition: `left 1.2s ease-out, opacity 0.5s ${
-      isClicked ? "0.9s" : "0.3s"
-    } ease`, // Adjust the delay for visibility
+    transition: `left 1.6s ease-out, opacity 0.5s ${
+      isClicked ? "1.2s" : "0.4s"
+    } ease`,
     opacity: isClicked ? 1 : 0,
     pointerEvents: isClicked ? "auto" : "none",
   };
@@ -110,39 +110,43 @@ export default function SettingsButton() {
           <div style={menuStyle}>
             <a
               href="/"
-              className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider"
+              className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider transition-all duration-300 ease-in-out hover:px-10"
             >
               Hjem
             </a>
           </div>
-          <a
-            href={"/?filter=kortfilm"}
-            style={menuStyle2}
-            className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider mt-2"
-          >
-            Kortfilmer
-          </a>
-          <a
-            href={"/?filter=spillefilm"}
-            style={menuStyle3}
-            className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider mt-2"
-          >
-            Filmer
-          </a>
-          <a
-            href={"/?filter=musikkvideo"}
-            style={menuStyle4}
-            className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider mt-2"
-          >
-            Musikkvideo
-          </a>
-          <a
-            style={menuStyle5}
-            href={"/?filter=dokumentar"}
-            className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider mt-2"
-          >
-            Dokumentarer
-          </a>
+          <div style={menuStyle2} className="mt-3">
+            <a
+              href={"/?filter=kortfilm"}
+              className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider transition-all duration-300 ease-in-out hover:px-10"
+            >
+              Kortfilmer
+            </a>
+          </div>
+          <div style={menuStyle3} className="mt-2">
+            <a
+              href={"/?filter=spillefilm"}
+              className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider transition-all duration-300 ease-in-out hover:px-10"
+            >
+              Filmer
+            </a>
+          </div>
+          <div style={menuStyle4} className="mt-1">
+            <a
+              href={"/?filter=musikkvideo"}
+              className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider transition-all duration-300 ease-in-out hover:px-10"
+            >
+              Musikkvideo
+            </a>
+          </div>
+          <div style={menuStyle5}>
+            <a
+              href={"/?filter=dokumentar"}
+              className="w-min border-2 rounded-full border-white py-1 px-6 text-2xl tracking-wider transition-all duration-300 ease-in-out hover:px-10"
+            >
+              Dokumentarer
+            </a>
+          </div>
         </div>
       </div>
     </div>
