@@ -3,18 +3,12 @@ import { useEffect, useState } from "react";
 import supabase from "./supabaseClient";
 import { Outlet } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { useNavigate } from "@tanstack/react-router";
 import SettingsButton from "./components/buttons/Settings";
+import ProfileButton from "./components/buttons/ProfileButton"
 
 export default function App() {
   const [session, setSession] = useState(null);
-  const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    window.localStorage.clear();
-    await navigate({ to: "/", replace: true });
-    window.location.reload();
-  };
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -35,8 +29,7 @@ export default function App() {
         <div className="flex gap-4 items-center">
           {session ? (
             <>
-              <Link to={"/create"}>Create</Link>
-              <button onClick={handleLogout}>Logout</button>
+              <ProfileButton />
             </>
           ) : (
             <Link to={"/login"}>Login</Link>
