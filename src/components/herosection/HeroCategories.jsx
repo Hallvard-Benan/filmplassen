@@ -3,7 +3,7 @@ export default function HeroCategories() {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex mt-8">
         {categories.map((category, index) => (
           <div
             key={index}
