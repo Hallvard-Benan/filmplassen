@@ -1,15 +1,12 @@
 import "./App.css";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useEffect, useState } from "react";
-import Posts from "./components/posts";
 import supabase from "./supabaseClient";
-import PostForm from "./components/Create";
+import { Outlet } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
+import SettingsButton from "./components/buttons/Settings";
+import ProfileButton from "./components/buttons/ProfileButton";
 
-const handleLogout = () => {
-  window.localStorage.clear();
-  window.location.reload();
-};
+import SearchBar from "./components/search";
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -27,28 +24,30 @@ export default function App() {
 
     return () => subscription.unsubscribe();
   }, []);
+  return (
+    <>
+      <nav className="flex text-xl font-semibold p-4 justify-between w-full">
+        <SettingsButton />
 
-  if (!session) {
-    return (
-      <Auth
-        supabaseClient={supabase}
-        appearance={{ theme: ThemeSupa }}
-        providers={["google"]}
-      />
-    );
-  } else {
-    return (
-      <div className="grid">
-        Logged in!{" "}
-        <button
-          className="border-2 border-neutral-600  hover:bg-slate-400 px-4 py-2 "
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
-        <Posts></Posts>
-        <PostForm></PostForm>
-      </div>
-    );
-  }
+        <div className="flex gap-4 top-5 right-3 items-center fixed">
+          {session ? (
+            <>
+              <ProfileButton />
+            </>
+          ) : (
+            <Link to="/login">
+              <div className="relative me-4 group cursor-pointer overflow-hidden">
+                <div className="px-4 pb-1 text-white">Login</div>
+                <div className="absolute bottom-0 left-0 bg-white h-0.5 w-0 transform origin-left transition-all duration-300 group-hover:w-full"></div>
+              </div>
+            </Link>
+          )}
+        </div>
+      </nav>
+      <main className=" w-[calc(min(100vw-20px,1050px))] mx-auto grid gap-4">
+        <SearchBar></SearchBar>
+        <Outlet />
+      </main>
+    </>
+  );
 }
