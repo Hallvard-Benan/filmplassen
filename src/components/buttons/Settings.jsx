@@ -82,7 +82,7 @@ export default function SettingsButton() {
   };
 
   return (
-    <div className="flex items-center z-10">
+    <div className="flex items-center z-10 fixed">
       <div className="relative">
         <button
           className="bg-transparent border-2 text-white font-bold rounded-full h-12 w-12"
