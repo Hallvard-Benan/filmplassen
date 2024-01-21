@@ -29,57 +29,57 @@ const ImageSlider = () => {
     {
       image: images[2],
       size: "w-80 h-56",
-      position: { top: "7%", left: "10%" },
+      position: { top: "2%", left: "5%" },
     },
     {
       image: images[0],
       size: "w-36 h-28",
-      position: { top: "40%", left: "6%" },
+      position: { top: "45%", left: "6%" },
     },
     {
       image: images[3],
       size: "w-56 h-36",
-      position: { top: "59%", left: "9%" },
+      position: { top: "68%", left: "5%" },
     },
     {
       image: images[9],
       size: "w-32 h-36",
-      position: { top: "18%", left: "36%" },
+      position: { top: "5%", left: "30%" },
     },
     {
       image: images[4],
       size: "w-48 h-32",
-      position: { top: "40%", left: "30%" },
+      position: { top: "34%", left: "30%" },
     },
     {
       image: images[8],
-      size: "w-64 h-36",
-      position: { top: "60%", left: "32%" },
+      size: "w-72 h-48",
+      position: { bottom: "5%", left: "%" },
     },
     {
       image: images[1],
       size: "w-64 h-48",
-      position: { top: "25%", left: "50%" },
+      position: { top: "10%", left: "50%" },
     },
     {
       image: images[5],
       size: "w-56 h-36",
-      position: { top: "55%", left: "55%" },
+      position: { top: "60%", left: "55%" },
     },
     {
       image: images[7],
       size: "w-64 h-40",
-      position: { top: "10%", left: "70%" },
+      position: { top: "8%", right: "-2%" },
     },
     {
       image: images[6],
       size: "w-36 h-28",
-      position: { top: "35%", left: "75%" },
+      position: { top: "40%", right: "5%" },
     },
     {
       image: images[10],
       size: "w-56 h-40",
-      position: { top: "60%", left: "75%" },
+      position: { top: "65%", right: "-1%" },
     },
   ];
 
@@ -88,7 +88,7 @@ const ImageSlider = () => {
       {squares.map((square, index) => (
         <div
           key={index}
-          className={`m-2 bg-cover bg-center ${square.size} absolute`}
+          className={`mx-2 bg-cover bg-center ${square.size} absolute`}
           style={{
             ...square.position,
             backgroundImage: `url(${square.image})`,
