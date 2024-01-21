@@ -24,9 +24,9 @@ export default function App() {
   }, []);
   return (
     <>
-      <nav className="flex text-xl font-semibold p-4 justify-between">
+      <nav className="flex text-xl font-semibold p-4 justify-between w-full">
         <SettingsButton />
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 top-5 right-3 items-center fixed">
           {session ? (
             <>
               <ProfileButton />
