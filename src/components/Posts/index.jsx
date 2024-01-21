@@ -117,7 +117,7 @@ function Posts() {
     const params = new URLSearchParams(window.location.search);
     const filter = params.get("filter");
     const search = params.get("search");
-    setPostFilter(filter);
+    setPostFilter(filter ? filter : search);
 
     async function fetchPosts() {
       let query = supabase
@@ -148,10 +148,18 @@ function Posts() {
 
   return (
     <div>
-      <h1 className="text-3xl font-extralight capitalize mb-2">
-        {postFilter ? postFilter : "Alle posts"}:
-      </h1>
+      <div className="flex gap-1">
+        <h1 className="text-3xl font-extralight capitalize mb-2">
+          {postFilter ? `Results for: ${postFilter}` : "Alle posts:"}
+        </h1>{" "}
+        {postFilter && (
+          <a href="/" className="text-2xl text-red-300 hover:text-red-400">
+            x
+          </a>
+        )}
+      </div>
       <div className="grid w-[calc(min(100vw-20px,1050px))] mx-auto border-b-2 border-x-2  ">
+        {posts?.length < 1 && "Couldn't find any posts"}
         {posts.map((post, index) => (
           <div
             key={index}

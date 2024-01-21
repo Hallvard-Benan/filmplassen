@@ -20,7 +20,7 @@ function SearchBar() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center">
+    <form onSubmit={handleSubmit} className="flex items-center mx-auto text-xl">
       <input
         name="search"
         onBlur={() => setButtonVisible(false)}

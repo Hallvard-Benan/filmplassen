@@ -8,7 +8,6 @@ import ProfileButton from "./components/buttons/ProfileButton";
 
 import SearchBar from "./components/search";
 
-
 export default function App() {
   const [session, setSession] = useState(null);
 
@@ -30,11 +29,7 @@ export default function App() {
       <nav className="flex text-xl font-semibold p-4 justify-between w-full">
         <SettingsButton />
 
-        <SearchBar></SearchBar>
-  
-
         <div className="flex gap-4 top-5 right-3 items-center fixed">
-
           {session ? (
             <>
               <ProfileButton />
@@ -49,7 +44,8 @@ export default function App() {
           )}
         </div>
       </nav>
-      <main className=" w-[calc(min(100vw-20px,1050px))] mx-auto">
+      <main className=" w-[calc(min(100vw-20px,1050px))] mx-auto grid gap-4">
+        <SearchBar></SearchBar>
         <Outlet />
       </main>
     </>
