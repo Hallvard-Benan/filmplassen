@@ -4,7 +4,8 @@ import supabase from "./supabaseClient";
 import { Outlet } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import SettingsButton from "./components/buttons/Settings";
-import ProfileButton from "./components/buttons/ProfileButton"
+import ProfileButton from "./components/buttons/ProfileButton";
+import SearchBar from "./components/search";
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -26,6 +27,7 @@ export default function App() {
     <>
       <nav className="flex text-xl font-semibold p-4 justify-between">
         <SettingsButton />
+        <SearchBar></SearchBar>
         <div className="flex gap-4 items-center">
           {session ? (
             <>
