@@ -22,7 +22,7 @@ function Posts() {
   }, []);
 
   const handleDeletePost = async (postId, userId) => {
-    closeDeleteModal(deleteModalRefs.current[postId]); // Optimized way to remove the deleted post from state
+    closeDeleteModal(deleteModalRefs.current[postId]);
     try {
       if (user === userId) {
         console.log("authenticated");
@@ -116,6 +116,7 @@ function Posts() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const filter = params.get("filter");
+    const search = params.get("search");
     setPostFilter(filter);
 
     async function fetchPosts() {
@@ -126,6 +127,9 @@ function Posts() {
 
       if (filter) {
         query = query.eq("genre", filter);
+      }
+      if (search) {
+        query = query.textSearch("title", search, { type: "websearch" });
       }
 
       const { data, error } = await query;
