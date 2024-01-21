@@ -5,6 +5,7 @@ import { Outlet } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import SettingsButton from "./components/buttons/Settings";
 import ProfileButton from "./components/buttons/ProfileButton";
+import Footer from "./components/footer/Footer";
 
 import SearchBar from "./components/search";
 
@@ -48,6 +49,9 @@ export default function App() {
         <SearchBar></SearchBar>
         <Outlet />
       </main>
+      <footer className="w-[calc(min(100vw-20px,1050px))] mx-auto">
+        <Footer />
+      </footer>
     </>
   );
 }
