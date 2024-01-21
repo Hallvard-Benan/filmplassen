@@ -5,6 +5,7 @@ import { Outlet } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import SettingsButton from "./components/buttons/Settings";
 import ProfileButton from "./components/buttons/ProfileButton";
+import Footer from "./components/footer/Footer";
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -44,6 +45,9 @@ export default function App() {
       <main className=" w-[calc(min(100vw-20px,1050px))] mx-auto">
         <Outlet />
       </main>
+      <footer className="w-[calc(min(100vw-20px,1050px))] mx-auto">
+        <Footer />
+      </footer>
     </>
   );
 }
