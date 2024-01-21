@@ -4,7 +4,7 @@ import supabase from "./supabaseClient";
 import { Outlet } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import SettingsButton from "./components/buttons/Settings";
-import ProfileButton from "./components/buttons/ProfileButton"
+import ProfileButton from "./components/buttons/ProfileButton";
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -32,7 +32,12 @@ export default function App() {
               <ProfileButton />
             </>
           ) : (
-            <Link to={"/login"}>Login</Link>
+            <Link to="/login">
+              <div className="relative me-4 group cursor-pointer overflow-hidden">
+                <div className="px-4 pb-1 text-white">Login</div>
+                <div className="absolute bottom-0 left-0 bg-white h-0.5 w-0 transform origin-left transition-all duration-300 group-hover:w-full"></div>
+              </div>
+            </Link>
           )}
         </div>
       </nav>
