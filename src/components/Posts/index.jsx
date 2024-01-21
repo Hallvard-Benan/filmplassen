@@ -22,7 +22,7 @@ function Posts() {
   }, []);
 
   const handleDeletePost = async (postId, userId) => {
-    closeDeleteModal(deleteModalRefs.current[postId]); // Optimized way to remove the deleted post from state
+    closeDeleteModal(deleteModalRefs.current[postId]);
     try {
       if (user === userId) {
         console.log("authenticated");
@@ -116,7 +116,8 @@ function Posts() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const filter = params.get("filter");
-    setPostFilter(filter);
+    const search = params.get("search");
+    setPostFilter(filter ? filter : search);
 
     async function fetchPosts() {
       let query = supabase
@@ -126,6 +127,9 @@ function Posts() {
 
       if (filter) {
         query = query.eq("genre", filter);
+      }
+      if (search) {
+        query = query.textSearch("title", search, { type: "websearch" });
       }
 
       const { data, error } = await query;
@@ -149,7 +153,15 @@ function Posts() {
           {postFilter ? postFilter : "Alle posts"}
         </h1>
       </div>
-      <div className="grid border-b-2 border-x-2">
+<div className="grid border-b-2 border-x-2">
+  {postFilter && (
+    <a href="/" className="text-2xl text-red-300 hover:text-red-400">
+      x
+    </a>
+  )}
+</div>
+      <div className="grid w-[calc(min(100vw-20px,1050px))] mx-auto border-b-2 border-x-2  ">
+        {posts?.length < 1 && "Couldn't find any posts"}
         {posts.map((post, index) => (
           <div
             key={index}

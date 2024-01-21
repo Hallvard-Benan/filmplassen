@@ -7,6 +7,8 @@ import SettingsButton from "./components/buttons/Settings";
 import ProfileButton from "./components/buttons/ProfileButton";
 import Footer from "./components/footer/Footer";
 
+import SearchBar from "./components/search";
+
 export default function App() {
   const [session, setSession] = useState(null);
 
@@ -27,6 +29,7 @@ export default function App() {
     <>
       <nav className="flex text-xl font-semibold p-4 justify-between w-full">
         <SettingsButton />
+
         <div className="flex gap-4 top-5 right-3 items-center fixed">
           {session ? (
             <>
@@ -42,7 +45,9 @@ export default function App() {
           )}
         </div>
       </nav>
-      <main className=" w-[calc(min(100vw-20px,1320px))] mx-auto">
+
+      <main className=" w-[calc(min(100vw-20px,1320px))] mx-auto grid gap-4">
+        <SearchBar></SearchBar>
         <Outlet />
       </main>
       <footer className="w-[calc(min(100vw-20px,1320px))] mx-auto">
