@@ -45,11 +45,11 @@ export default function App() {
           )}
         </div>
       </nav>
-      <main className=" w-[calc(min(100vw-20px,1050px))] mx-auto grid gap-4">
+      <main className=" w-[calc(min(100vw-20px,1320px))] mx-auto">
         <SearchBar></SearchBar>
         <Outlet />
       </main>
-      <footer className="w-[calc(min(100vw-20px,1050px))] mx-auto">
+      <footer className="w-[calc(min(100vw-20px,1320px))] mx-auto">
         <Footer />
       </footer>
     </>
