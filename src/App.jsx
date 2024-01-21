@@ -5,8 +5,7 @@ import { Outlet } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import SettingsButton from "./components/buttons/Settings";
 import ProfileButton from "./components/buttons/ProfileButton";
-
-import SearchBar from "./components/search";
+import Footer from "./components/footer/Footer";
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -36,7 +35,7 @@ export default function App() {
             </>
           ) : (
             <Link to="/login">
-              <div className="relative me-4 group cursor-pointer overflow-hidden">
+              <div className="relative me-2 group cursor-pointer overflow-hidden">
                 <div className="px-4 pb-1 text-white">Login</div>
                 <div className="absolute bottom-0 left-0 bg-white h-0.5 w-0 transform origin-left transition-all duration-300 group-hover:w-full"></div>
               </div>
@@ -44,10 +43,13 @@ export default function App() {
           )}
         </div>
       </nav>
-      <main className=" w-[calc(min(100vw-20px,1050px))] mx-auto grid gap-4">
-        <SearchBar></SearchBar>
+
+      <main className=" w-[calc(min(100vw-20px,1320px))] mx-auto grid gap-4">
         <Outlet />
       </main>
+      <footer className="w-[calc(min(100vw-20px,1320px))] mx-auto">
+        <Footer />
+      </footer>
     </>
   );
 }
