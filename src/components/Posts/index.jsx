@@ -3,6 +3,8 @@ import supabase from "../../supabaseClient";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "@tanstack/react-router";
+import SearchBar from "../search";
+
 function Posts() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
@@ -148,19 +150,20 @@ function Posts() {
 
   return (
     <div>
-      <div className="w-max mx-auto mt-10">
-        <h1 className="text-center text-3xl font-extralight capitalize mb-10 pb-4 px-28 border-b">
+      <div className=" flex flex-col mt-10 items-center text-center">
+        <h1 className="text-3xl font-extralight capitalize mb-10 pb-4 px-28 border-b me-12">
           {postFilter ? postFilter : "Alle posts"}
         </h1>
+        <SearchBar />
       </div>
-<div className="grid border-b-2 border-x-2">
-  {postFilter && (
-    <a href="/" className="text-2xl text-red-300 hover:text-red-400">
-      x
-    </a>
-  )}
-</div>
-      <div className="grid w-[calc(min(100vw-20px,1050px))] mx-auto border-b-2 border-x-2  ">
+      <div className="grid border-b-2 border-x-2 mt-8">
+        {postFilter && (
+          <a href="/" className="text-2xl text-red-300 hover:text-red-400">
+            x
+          </a>
+        )}
+      </div>
+      <div className="grid w-[calc(min(100vw-20px,1320px))] mx-auto border-b-2 border-x-2  ">
         {posts?.length < 1 && "Couldn't find any posts"}
         {posts.map((post, index) => (
           <div
