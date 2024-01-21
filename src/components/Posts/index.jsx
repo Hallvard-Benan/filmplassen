@@ -144,10 +144,12 @@ function Posts() {
 
   return (
     <div>
-      <h1 className="text-3xl font-extralight capitalize mb-2">
-        {postFilter ? postFilter : "Alle posts"}:
-      </h1>
-      <div className="grid w-[calc(min(100vw-20px,1050px))] mx-auto border-b-2 border-x-2  ">
+      <div className="w-max mx-auto mt-10">
+        <h1 className="text-center text-3xl font-extralight capitalize mb-10 pb-4 px-28 border-b">
+          {postFilter ? postFilter : "Alle posts"}
+        </h1>
+      </div>
+      <div className="grid border-b-2 border-x-2">
         {posts.map((post, index) => (
           <div
             key={index}
