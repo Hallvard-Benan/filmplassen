@@ -148,16 +148,18 @@ function Posts() {
 
   return (
     <div>
-      <div className="flex gap-1">
-        <h1 className="text-3xl font-extralight capitalize mb-2">
-          {postFilter ? `Results for: ${postFilter}` : "Alle posts:"}
-        </h1>{" "}
-        {postFilter && (
-          <a href="/" className="text-2xl text-red-300 hover:text-red-400">
-            x
-          </a>
-        )}
+      <div className="w-max mx-auto mt-10">
+        <h1 className="text-center text-3xl font-extralight capitalize mb-10 pb-4 px-28 border-b">
+          {postFilter ? postFilter : "Alle posts"}
+        </h1>
       </div>
+<div className="grid border-b-2 border-x-2">
+  {postFilter && (
+    <a href="/" className="text-2xl text-red-300 hover:text-red-400">
+      x
+    </a>
+  )}
+</div>
       <div className="grid w-[calc(min(100vw-20px,1050px))] mx-auto border-b-2 border-x-2  ">
         {posts?.length < 1 && "Couldn't find any posts"}
         {posts.map((post, index) => (
